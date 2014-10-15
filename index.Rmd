@@ -6,7 +6,8 @@ job         :
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
 hitheme     : tomorrow      # 
-widgets     : [nvd3,morris]            # {mathjax, quiz, bootstrap}
+widgets     : []            # {mathjax, quiz, bootstrap}
+ext_widgets : {rCharts: [libraries/nvd3]}
 mode        : selfcontained # {standalone, draft}
 knit        : slidify::knit2slides
 ---
@@ -320,26 +321,15 @@ Sometimes static pictures are not enough:
 ```{r,echo=FALSE, message=FALSE, comment=NA}
 require(rCharts)
 require(knitr)
-options(RCHART_WIDTH = 800, RCHART_HEIGHT = 500, rcharts.cdn=FALSE)
+require(reshape2)
+options(RCHART_WIDTH = 800, RCHART_HEIGHT = 500, rcharts.cdn=TRUE)
 ```
 
 ```{r,echo=FALSE,results = 'asis'}
 hair_eye_male <- subset(as.data.frame(HairEyeColor), Sex == "Male")
 n1 <- nPlot(Freq ~ Hair, group = "Eye", data = hair_eye_male, 
   type = 'multiBarChart')
-n1$show('inline',include_assets = TRUE,cdn=FALSE)
-```
-
----
-
-## Data Visualization
-
-```{r,echo=FALSE,results='asis'}
-data(economics, package = "ggplot2")
-econ <- transform(economics, date = as.character(date))
-m1 <- mPlot(x = "date", y = c("psavert", "uempmed"), type = "Line", data = econ)
-m1$set(pointSize = 0, lineWidth = 1)
-m1
+n1$show('inline')
 ```
 
 --- .segue .dark

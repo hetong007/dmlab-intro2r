@@ -6,7 +6,8 @@ job         :
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
 hitheme     : tomorrow      # 
-widgets     : [nvd3,morris]            # {mathjax, quiz, bootstrap}
+widgets     : []            # {mathjax, quiz, bootstrap}
+ext_widgets : {rCharts: [libraries/nvd3]}
 mode        : selfcontained # {standalone, draft}
 knit        : slidify::knit2slides
 ---
@@ -60,19 +61,19 @@ groupA
 ```
 
 ```
-##   [1]  8.4148  1.4115  1.9166  2.6576  6.7905  3.0909  7.1984  8.4458
-##   [9]  3.2309  8.1880 -0.3137  5.6411  3.4896  6.7891  4.4245  6.4768
-##  [17]  1.6799  7.8890  4.8355  7.5728  4.7980 -0.5749  4.3500  6.5675
-##  [25]  3.9754  6.5211  6.2522  6.6849  2.2563  7.1407  5.0972  6.5552
-##  [33]  6.0741  1.3744  8.1244  6.4716  1.1548  3.2167  6.7187 -1.9521
-##  [41]  6.3465  2.5288  2.2566  4.4020  5.9173  2.7768  5.5261  4.7015
-##  [49]  4.9731  0.3502  6.6587  2.8315 -0.4497  0.5091  7.0458  2.5252
-##  [57]  7.8604  5.1703  7.8117  3.3512  6.0971  8.3217  3.5075  7.2513
-##  [65]  1.8094  4.8007  3.5442  4.4679  3.5365 -0.9916  3.6653  2.3381
-##  [73]  4.4729  5.1480  7.6398  4.0272  3.0952  3.9126  4.0050 11.1871
-##  [81]  7.3031  2.9386  3.0635  0.8264  5.7611  5.9373  4.5907 10.2018
-##  [89]  5.6733 -1.7092  3.3747  4.5797  6.6282  3.7543  7.7073  8.3110
-##  [97]  4.0444  6.4197  0.1034  2.7448
+##   [1]  3.5794  6.3882  6.8609  5.3853  1.1379  8.7237  3.6871  3.5696
+##   [9] 10.9958  6.1629  6.7984 12.2326  4.4837  1.3916  3.1010  1.2401
+##  [17]  6.0099  4.9802  3.0352  1.3786  3.7145  3.4193 -0.6099  2.3239
+##  [25]  8.4922 -2.6229  7.3236  8.7738  4.3974  5.4352  5.9593 11.5257
+##  [33]  3.8268  2.6914  7.9993  3.9392  1.3178 10.9439  2.4811  4.1416
+##  [41]  1.7222  5.3926  2.0505  7.8467  2.2538  9.9531  7.4375  5.3570
+##  [49]  8.3734  4.8220  7.4037  0.4452  0.6344  4.4650  7.2380  4.1444
+##  [57]  5.0855 -0.5332  5.2301  8.7919 13.6589  0.5906  4.7456  9.2781
+##  [65]  8.2843  2.4842  5.3055  5.7935  2.7734  2.1242  3.7565  6.3098
+##  [73]  7.8208  5.3100 11.3600  8.3838  9.2205  7.7164  5.8169  3.5496
+##  [81]  3.3919  3.4113  8.4184  3.9099  6.2352  6.3927  9.4745 -2.2387
+##  [89]  7.0482  4.8425  8.8880 10.2136  6.1407  7.1922  3.5413  3.0456
+##  [97]  5.5005 -1.0879  2.2165  5.7653
 ```
 
 ```r
@@ -80,9 +81,9 @@ groupB
 ```
 
 ```
-##  [1] 12.428  8.289  7.646 11.278 12.031  4.606 10.267 13.370  9.326 10.461
-## [11]  6.147 11.619  6.478  7.978 10.613 11.879 13.692  7.821  5.049 12.639
-## [21]  9.025  9.690  6.937 11.604 13.090
+##  [1] 10.192  7.723  7.410 11.962 12.419  6.689  8.946 15.626 11.142 10.538
+## [11]  2.476 14.820 11.435  5.950 11.482 10.093  9.029  6.298 10.159  7.088
+## [21] 10.615 15.246  8.844  0.967  4.448
 ```
 
 ---
@@ -99,13 +100,13 @@ t.test(groupA,groupB,alternative = c("less"))
 ## 	Welch Two Sample t-test
 ## 
 ## data:  groupA and groupB
-## t = -8.708, df = 36.84, p-value = 8.978e-11
+## t = -5.081, df = 34.05, p-value = 6.726e-06
 ## alternative hypothesis: true difference in means is less than 0
 ## 95 percent confidence interval:
-##    -Inf -4.177
+##    -Inf -2.703
 ## sample estimates:
 ## mean of x mean of y 
-##     4.578     9.758
+##     5.213     9.264
 ```
 
 ---
@@ -127,7 +128,7 @@ lm.model
 ## 
 ## Coefficients:
 ## (Intercept)            x  
-##     -0.0424       4.9804
+##       0.154        4.965
 ```
 
 ---
@@ -146,18 +147,18 @@ summary(lm.model)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -2.1616 -0.6396 -0.0066  0.5037  2.2849 
+## -3.1337 -0.7504 -0.0153  0.7365  2.1416 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  -0.0424     0.0961   -0.44     0.66    
-## x             4.9804     0.0931   53.49   <2e-16 ***
+## (Intercept)   0.1543     0.0978    1.58     0.12    
+## x             4.9653     0.1023   48.51   <2e-16 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 0.959 on 98 degrees of freedom
-## Multiple R-squared:  0.967,	Adjusted R-squared:  0.967 
-## F-statistic: 2.86e+03 on 1 and 98 DF,  p-value: <2e-16
+## Residual standard error: 0.977 on 98 degrees of freedom
+## Multiple R-squared:  0.96,	Adjusted R-squared:  0.96 
+## F-statistic: 2.35e+03 on 1 and 98 DF,  p-value: <2e-16
 ```
 
 ---
@@ -242,7 +243,7 @@ system.time({a+b})
 
 ```
 ##    user  system elapsed 
-##   0.004   0.000   0.004
+##   0.005   0.000   0.004
 ```
 
 ```r
@@ -254,7 +255,7 @@ system.time({
 
 ```
 ##    user  system elapsed 
-##   0.957   0.005   0.964
+##   0.928   0.003   0.932
 ```
 
 Let C to do loop.
@@ -356,7 +357,7 @@ head(rnums)
 ```
 
 ```
-## [1] -0.7524  0.8390 -0.3736  0.2736 -0.2715 -0.8221
+## [1]  0.9888  1.0628  0.2080  1.3649 -2.4064  1.2872
 ```
 
 ```r
@@ -435,36 +436,22 @@ Sometimes static pictures are not enough:
 
 
 
-<link rel='stylesheet' href=/grad/3/hetongh/R/x86_64-unknown-linux-gnu-library/3.0/rCharts/libraries/nvd3/css/nv.d3.css>
-<link rel='stylesheet' href=/grad/3/hetongh/R/x86_64-unknown-linux-gnu-library/3.0/rCharts/libraries/nvd3/css/rNVD3.css>
-<script type='text/javascript' src=/grad/3/hetongh/R/x86_64-unknown-linux-gnu-library/3.0/rCharts/libraries/nvd3/js/jquery-1.8.2.min.js></script>
-<script type='text/javascript' src=/grad/3/hetongh/R/x86_64-unknown-linux-gnu-library/3.0/rCharts/libraries/nvd3/js/d3.v3.min.js></script>
-<script type='text/javascript' src=/grad/3/hetongh/R/x86_64-unknown-linux-gnu-library/3.0/rCharts/libraries/nvd3/js/nv.d3.min-new.js></script>
-<script type='text/javascript' src=/grad/3/hetongh/R/x86_64-unknown-linux-gnu-library/3.0/rCharts/libraries/nvd3/js/fisheye.js></script> 
- <style>
-  .rChart {
-    display: block;
-    margin-left: auto; 
-    margin-right: auto;
-    width: 800px;
-    height: 500px;
-  }  
-  </style>
-<div id = 'chart71ba1024b750' class = 'rChart nvd3'></div>
+
+<div id = 'chart71ba3611c709' class = 'rChart nvd3'></div>
 <script type='text/javascript'>
  $(document).ready(function(){
-      drawchart71ba1024b750()
+      drawchart71ba3611c709()
     });
-    function drawchart71ba1024b750(){  
+    function drawchart71ba3611c709(){  
       var opts = {
- "dom": "chart71ba1024b750",
+ "dom": "chart71ba3611c709",
 "width":    800,
 "height":    500,
 "x": "Hair",
 "y": "Freq",
 "group": "Eye",
 "type": "multiBarChart",
-"id": "chart71ba1024b750" 
+"id": "chart71ba3611c709" 
 },
         data = [
  {
@@ -612,12 +599,6 @@ Sometimes static pictures are not enough:
       });
     };
 </script>
-
----
-
-## Data Visualization
-
-<iframe src=' assets/fig/unnamed-chunk-19.html ' scrolling='no' frameBorder='0' seamless class='rChart morris ' id=iframe- chart71ba6e5de8c5 ></iframe> <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
 --- .segue .dark
 
