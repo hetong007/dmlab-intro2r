@@ -242,7 +242,7 @@ system.time({a+b})
 
 ```
 ##    user  system elapsed 
-##   0.035   0.001   0.037
+##   0.004   0.000   0.004
 ```
 
 ```r
@@ -254,7 +254,7 @@ system.time({
 
 ```
 ##    user  system elapsed 
-##   0.967   0.000   0.967
+##   0.950   0.015   0.970
 ```
 
 Let C to do loop.
@@ -435,12 +435,11 @@ Sometimes static pictures are not enough:
 
 
 
-<link rel='stylesheet' href=/grad/3/hetongh/R/x86_64-unknown-linux-gnu-library/3.0/rCharts/libraries/nvd3/css/nv.d3.css>
-<link rel='stylesheet' href=/grad/3/hetongh/R/x86_64-unknown-linux-gnu-library/3.0/rCharts/libraries/nvd3/css/rNVD3.css>
-<script type='text/javascript' src=/grad/3/hetongh/R/x86_64-unknown-linux-gnu-library/3.0/rCharts/libraries/nvd3/js/jquery-1.8.2.min.js></script>
-<script type='text/javascript' src=/grad/3/hetongh/R/x86_64-unknown-linux-gnu-library/3.0/rCharts/libraries/nvd3/js/d3.v3.min.js></script>
-<script type='text/javascript' src=/grad/3/hetongh/R/x86_64-unknown-linux-gnu-library/3.0/rCharts/libraries/nvd3/js/nv.d3.min-new.js></script>
-<script type='text/javascript' src=/grad/3/hetongh/R/x86_64-unknown-linux-gnu-library/3.0/rCharts/libraries/nvd3/js/fisheye.js></script> 
+<link rel='stylesheet' href=//cdnjs.cloudflare.com/ajax/libs/nvd3/1.1.15-beta/nv.d3.min.css>
+<script type='text/javascript' src=//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js></script>
+<script type='text/javascript' src=//d3js.org/d3.v3.min.js></script>
+<script type='text/javascript' src=//cdnjs.cloudflare.com/ajax/libs/nvd3/1.1.15-beta/nv.d3.min.js></script>
+<script type='text/javascript' src=//nvd3.org/assets/lib/fisheye.js></script> 
  <style>
   .rChart {
     display: block;
@@ -450,21 +449,21 @@ Sometimes static pictures are not enough:
     height: 500px;
   }  
   </style>
-<div id = 'chart38bb1d688880' class = 'rChart nvd3'></div>
+<div id = 'chart38bb31907bb9' class = 'rChart nvd3'></div>
 <script type='text/javascript'>
  $(document).ready(function(){
-      drawchart38bb1d688880()
+      drawchart38bb31907bb9()
     });
-    function drawchart38bb1d688880(){  
+    function drawchart38bb31907bb9(){  
       var opts = {
- "dom": "chart38bb1d688880",
+ "dom": "chart38bb31907bb9",
 "width":    800,
 "height":    500,
 "x": "Hair",
 "y": "Freq",
 "group": "Eye",
 "type": "multiBarChart",
-"id": "chart38bb1d688880" 
+"id": "chart38bb31907bb9" 
 },
         data = [
  {
@@ -617,12 +616,7 @@ Sometimes static pictures are not enough:
 
 ## Data Visualization
 
-
-```
-## Loading required package: reshape2
-```
-
-<iframe src=' assets/fig/unnamed-chunk-19.html ' scrolling='no' frameBorder='0' seamless class='rChart morris ' id=iframe- chart38bb751e4c08 ></iframe> <style>iframe.rChart{ width: 100%; height: 400px;}</style>
+<iframe src=' assets/fig/unnamed-chunk-19.html ' scrolling='no' frameBorder='0' seamless class='rChart morris ' id=iframe- chart38bb1ad9dc6d ></iframe> <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
 --- .segue .dark
 
