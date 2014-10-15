@@ -320,7 +320,7 @@ Sometimes static pictures are not enough:
 ```{r,echo=FALSE, message=FALSE, comment=NA}
 require(rCharts)
 require(knitr)
-options(RCHART_WIDTH = 800, RCHART_HEIGHT = 500, rcharts.cdn=TRUE)
+options(RCHART_WIDTH = 800, RCHART_HEIGHT = 500, rcharts.cdn=FALSE)
 ```
 
 ```{r,echo=FALSE,results = 'asis'}
