@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Introduction to R</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Introduction to R">
+  <meta name="author" content="Tong He">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Introduction to R</h1>
+    <h2>with unique features</h2>
+    <p>Tong He<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Outline</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>R: Born for statistics.</li>
+<li>Thousands of packages for data analysis</li>
+<li>Reproducible report
+
+<ul>
+<li>knitr</li>
+<li>slidify</li>
+<li>rmarkdown</li>
+</ul></li>
+<li>Data Visualization
+
+<ul>
+<li>ggplot2</li>
+<li>rCharts</li>
+</ul></li>
+<li>Web application
+
+<ul>
+<li>shiny</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue dark" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>The GNU-R project</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>R: Born for statistics</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>History:</p>
+
+<ul>
+<li>From the S language, which is inspired by Scheme.</li>
+<li>Created by <a href="http://en.wikipedia.org/wiki/Ross_Ihaka">Ross Ihaka</a> and <a href="http://en.wikipedia.org/wiki/Robert_Gentleman_%28statistician%29">Robert Gentleman</a>.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>R: Born for statistics</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>R is strong for statistical missions. </p>
+
+<ul>
+<li>Strong matrix calculation ability</li>
+<li>Native support for statistics</li>
+<li>Abundant third-party packages</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>R: Born for statistics</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">groupA = rnorm(100,5,3)
+groupB = rnorm(25,10,3)
+groupA
+</code></pre>
+
+<pre><code>##   [1]  3.5794  6.3882  6.8609  5.3853  1.1379  8.7237  3.6871  3.5696
+##   [9] 10.9958  6.1629  6.7984 12.2326  4.4837  1.3916  3.1010  1.2401
+##  [17]  6.0099  4.9802  3.0352  1.3786  3.7145  3.4193 -0.6099  2.3239
+##  [25]  8.4922 -2.6229  7.3236  8.7738  4.3974  5.4352  5.9593 11.5257
+##  [33]  3.8268  2.6914  7.9993  3.9392  1.3178 10.9439  2.4811  4.1416
+##  [41]  1.7222  5.3926  2.0505  7.8467  2.2538  9.9531  7.4375  5.3570
+##  [49]  8.3734  4.8220  7.4037  0.4452  0.6344  4.4650  7.2380  4.1444
+##  [57]  5.0855 -0.5332  5.2301  8.7919 13.6589  0.5906  4.7456  9.2781
+##  [65]  8.2843  2.4842  5.3055  5.7935  2.7734  2.1242  3.7565  6.3098
+##  [73]  7.8208  5.3100 11.3600  8.3838  9.2205  7.7164  5.8169  3.5496
+##  [81]  3.3919  3.4113  8.4184  3.9099  6.2352  6.3927  9.4745 -2.2387
+##  [89]  7.0482  4.8425  8.8880 10.2136  6.1407  7.1922  3.5413  3.0456
+##  [97]  5.5005 -1.0879  2.2165  5.7653
+</code></pre>
+
+<pre><code class="r">groupB
+</code></pre>
+
+<pre><code>##  [1] 10.192  7.723  7.410 11.962 12.419  6.689  8.946 15.626 11.142 10.538
+## [11]  2.476 14.820 11.435  5.950 11.482 10.093  9.029  6.298 10.159  7.088
+## [21] 10.615 15.246  8.844  0.967  4.448
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>R: Born for statistics</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">t.test(groupA,groupB,alternative = c(&quot;less&quot;))
+</code></pre>
+
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  groupA and groupB
+## t = -5.081, df = 34.05, p-value = 6.726e-06
+## alternative hypothesis: true difference in means is less than 0
+## 95 percent confidence interval:
+##    -Inf -2.703
+## sample estimates:
+## mean of x mean of y 
+##     5.213     9.264
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>R: Born for statistics</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">x = rnorm(100)
+y = 5*x+rnorm(100,0,1)
+lm.model = lm(y~x)
+lm.model
+</code></pre>
+
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x)
+## 
+## Coefficients:
+## (Intercept)            x  
+##       0.154        4.965
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>R: Born for statistics</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">summary(lm.model)
+</code></pre>
+
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.1337 -0.7504 -0.0153  0.7365  2.1416 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   0.1543     0.0978    1.58     0.12    
+## x             4.9653     0.1023   48.51   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.977 on 98 degrees of freedom
+## Multiple R-squared:  0.96,   Adjusted R-squared:  0.96 
+## F-statistic: 2.35e+03 on 1 and 98 DF,  p-value: &lt;2e-16
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>R: Born for statisitics</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">plot(x,y,pch=20)
+abline(lm.model,col=2)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-5.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
+  <hgroup>
+    <h2>Third party packages</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><a href="http://www.r-project.org/">CRAN</a>(The Comprehensive R Archive Network) is managing over 5,000 R packages.
+
+<ul>
+<li>Strict quality control</li>
+<li><a href="http://cran.r-project.org/web/views/">Task Views</a></li>
+<li>My package <a href="http://cran.r-project.org/web/packages/xgboost/index.html">xgboost</a></li>
+</ul></li>
+<li><a href="https://r-forge.r-project.org/">R-Forge</a> is an SVN repository for packages.</li>
+<li><a href="http://www.bioconductor.org/">Bioconductor</a> focus on biostat and bioinfo packages.</li>
+<li><a href="http://github.com">Github</a> more flexible.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h2>Third party packages</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>To install a package, say <code>xgboost</code>, on CRAN, just type </p>
+
+<pre><code class="r">install.packages(&#39;xgboost&#39;)
+</code></pre>
+
+<p>To install <code>xgboost</code> from github, we need </p>
+
+<pre><code class="r">require(devtools)
+install_github(&#39;xgboost&#39;,&#39;tqchen&#39;,subdir=&#39;R-package&#39;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h2>The community and environment</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:48%;' class='centered'>
+  <p>The community</p>
+
+<ul>
+<li>Mailing lists</li>
+<li>Stackoverflow / Cross Validation</li>
+<li>R conference</li>
+</ul>
+
+</div>
+<div style='float:right;width:48%;'>
+  <p>The environment</p>
+
+<ul>
+<li>IDE: RStudio
+
+<ul>
+<li>Server version for collaboration</li>
+<li>Many fancy stuffs later</li>
+</ul></li>
+<li>Commercial version
+
+<ul>
+<li>Revolution</li>
+</ul></li>
+</ul>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue dark" id="slide-13" style="background:;">
+  <hgroup>
+    <h2>Unique features in R</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
+  <hgroup>
+    <h2>Vectorization</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">a = 1:1000000
+b = 1:1000000
+system.time({a+b})
+</code></pre>
+
+<pre><code>##    user  system elapsed 
+##   0.035   0.001   0.037
+</code></pre>
+
+<pre><code class="r">system.time({
+  for (i in 1:length(a))
+    a[i]+b[i]
+})
+</code></pre>
+
+<pre><code>##    user  system elapsed 
+##   0.967   0.000   0.967
+</code></pre>
+
+<p>Let C to do loop.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-15" style="background:;">
+  <hgroup>
+    <h2>Vectorization</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>R is also strong in (sparse) matrix computation.</p>
+
+<pre><code class="r">library(&#39;Matrix&#39;)
+
+m1 = matrix(0, nrow = 1000, ncol = 1000)
+m2 = Matrix(0, nrow = 1000, ncol = 1000, sparse = TRUE)
+
+object.size(m1)
+</code></pre>
+
+<pre><code>## 8000200 bytes
+</code></pre>
+
+<pre><code class="r">object.size(m2)
+</code></pre>
+
+<pre><code>## 5632 bytes
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-16" style="background:;">
+  <hgroup>
+    <h2>Vectorization</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">m1[500, 500] &lt;- 1
+m2[500, 500] &lt;- 1
+
+object.size(m1)
+</code></pre>
+
+<pre><code>## 8000200 bytes
+</code></pre>
+
+<pre><code class="r">object.size(m2)
+</code></pre>
+
+<pre><code>## 5648 bytes
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-17" style="background:;">
+  <hgroup>
+    <h2>Vectorization</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">m2 %*% rnorm(1000)
+m2 + m2
+m2 - m2
+t(m2)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-18" style="background:;">
+  <hgroup>
+    <h2>Vectorization</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>R can also take advantage from the parallelization of *BLAS libraries. There are several choices:</p>
+
+<ul>
+<li>OpenBLAS</li>
+<li>ATLAS</li>
+<li>HiPLAR</li>
+</ul>
+
+<p><a href="http://www.stat.cmu.edu/%7Enmv/2013/07/09/for-faster-r-use-openblas-instead-better-than-atlas-trivial-to-switch-to-on-ubuntu/">Here</a>&#39;s a tutorial for apt-get style installation on Ubuntu.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-19" style="background:;">
+  <hgroup>
+    <h2>Reproducible Report</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Insert code and result in a slide is painful.</p>
+
+<ul>
+<li>Copy &amp; paste</li>
+<li>Formatting</li>
+<li>Update code and report seperately</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-20" style="background:;">
+  <hgroup>
+    <h2>Reproducible Report</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">rnums = rnorm(10000)
+head(rnums)
+</code></pre>
+
+<pre><code>## [1]  0.9888  1.0628  0.2080  1.3649 -2.4064  1.2872
+</code></pre>
+
+<pre><code class="r">hist(rnums,breaks=50)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-12.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-21" style="background:;">
+  <hgroup>
+    <h2>Reproducible Report</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>This is supported by the package <a href="http://yihui.name/knitr/"><code>knitr</code></a>:</p>
+
+<ul>
+<li>Markdown-based grammar with HTML codes as extension</li>
+<li>Webpage based output</li>
+</ul>
+
+<p>We&#39;ll see the &#39;Webpage based output&#39; is important.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-22" style="background:;">
+  <hgroup>
+    <h2>Reproducible Report</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>This slide is produced by the package <a href="https://github.com/ramnathv/slidify"><code>slidify</code></a>.</p>
+
+<ul>
+<li>Based on <code>knitr</code></li>
+<li>Abundant templates</li>
+<li>Easy to share</li>
+</ul>
+
+<div style='float:left;width:48%;' class='centered'>
+  
+</div>
+<div style='float:right;width:48%;'>
+  
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-23" style="background:;">
+  <hgroup>
+    <h2>Reproducible Report</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Now I write all the assignments with <code>rmarkdown</code>:</p>
+
+<ul>
+<li>Based on <code>knitr</code></li>
+<li>Allowing formatting and templates</li>
+<li>Using <code>pandoc</code> as the backend
+
+<ul>
+<li>PDF</li>
+<li>HTML</li>
+<li>Word(yes, even word)</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-24" style="background:;">
+  <hgroup>
+    <h2>Data Visualization</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Data visualization is sometimes important. Compare these two graphs:</p>
+
+<div style='float:left;width:48%;' class='centered'>
+  <p><img src="assets/fig/unnamed-chunk-13.png" alt="plot of chunk unnamed-chunk-13"> </p>
+
+</div>
+<div style='float:right;width:48%;'>
+  <p><img src="assets/fig/unnamed-chunk-14.png" alt="plot of chunk unnamed-chunk-14"> </p>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-25" style="background:;">
+  <hgroup>
+    <h2>Data Visualization</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Or we can have other variations:</p>
+
+<div style='float:left;width:48%;' class='centered'>
+  <p><img src="assets/fig/unnamed-chunk-15.png" alt="plot of chunk unnamed-chunk-15"> </p>
+
+</div>
+<div style='float:right;width:48%;'>
+  <p><img src="assets/fig/unnamed-chunk-16.png" alt="plot of chunk unnamed-chunk-16"> </p>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-26" style="background:;">
+  <hgroup>
+    <h2>Data Visualization</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Sometimes static pictures are not enough:</p>
+
+<p><link rel='stylesheet' href=/grad/3/hetongh/R/x86_64-unknown-linux-gnu-library/3.0/rCharts/libraries/nvd3/css/nv.d3.css>
+<link rel='stylesheet' href=/grad/3/hetongh/R/x86_64-unknown-linux-gnu-library/3.0/rCharts/libraries/nvd3/css/rNVD3.css></p>
+
+<script type='text/javascript' src=/grad/3/hetongh/R/x86_64-unknown-linux-gnu-library/3.0/rCharts/libraries/nvd3/js/jquery-1.8.2.min.js></script>
+
+<script type='text/javascript' src=/grad/3/hetongh/R/x86_64-unknown-linux-gnu-library/3.0/rCharts/libraries/nvd3/js/d3.v3.min.js></script>
+
+<script type='text/javascript' src=/grad/3/hetongh/R/x86_64-unknown-linux-gnu-library/3.0/rCharts/libraries/nvd3/js/nv.d3.min-new.js></script>
+
+<script type='text/javascript' src=/grad/3/hetongh/R/x86_64-unknown-linux-gnu-library/3.0/rCharts/libraries/nvd3/js/fisheye.js></script> 
+
+<p><style>
+  .rChart {
+    display: block;
+    margin-left: auto; 
+    margin-right: auto;
+    width: 800px;
+    height: 500px;
+  }<br>
+  </style></p>
+
+<div id = 'chart38bb1d688880' class = 'rChart nvd3'></div>
+
+<script type='text/javascript'>
+ $(document).ready(function(){
+      drawchart38bb1d688880()
+    });
+    function drawchart38bb1d688880(){  
+      var opts = {
+ "dom": "chart38bb1d688880",
+"width":    800,
+"height":    500,
+"x": "Hair",
+"y": "Freq",
+"group": "Eye",
+"type": "multiBarChart",
+"id": "chart38bb1d688880" 
+},
+        data = [
+ {
+ "Hair": "Black",
+"Eye": "Brown",
+"Sex": "Male",
+"Freq":             32 
+},
+{
+ "Hair": "Brown",
+"Eye": "Brown",
+"Sex": "Male",
+"Freq":             53 
+},
+{
+ "Hair": "Red",
+"Eye": "Brown",
+"Sex": "Male",
+"Freq":             10 
+},
+{
+ "Hair": "Blond",
+"Eye": "Brown",
+"Sex": "Male",
+"Freq":              3 
+},
+{
+ "Hair": "Black",
+"Eye": "Blue",
+"Sex": "Male",
+"Freq":             11 
+},
+{
+ "Hair": "Brown",
+"Eye": "Blue",
+"Sex": "Male",
+"Freq":             50 
+},
+{
+ "Hair": "Red",
+"Eye": "Blue",
+"Sex": "Male",
+"Freq":             10 
+},
+{
+ "Hair": "Blond",
+"Eye": "Blue",
+"Sex": "Male",
+"Freq":             30 
+},
+{
+ "Hair": "Black",
+"Eye": "Hazel",
+"Sex": "Male",
+"Freq":             10 
+},
+{
+ "Hair": "Brown",
+"Eye": "Hazel",
+"Sex": "Male",
+"Freq":             25 
+},
+{
+ "Hair": "Red",
+"Eye": "Hazel",
+"Sex": "Male",
+"Freq":              7 
+},
+{
+ "Hair": "Blond",
+"Eye": "Hazel",
+"Sex": "Male",
+"Freq":              5 
+},
+{
+ "Hair": "Black",
+"Eye": "Green",
+"Sex": "Male",
+"Freq":              3 
+},
+{
+ "Hair": "Brown",
+"Eye": "Green",
+"Sex": "Male",
+"Freq":             15 
+},
+{
+ "Hair": "Red",
+"Eye": "Green",
+"Sex": "Male",
+"Freq":              7 
+},
+{
+ "Hair": "Blond",
+"Eye": "Green",
+"Sex": "Male",
+"Freq":              8 
+} 
+]
+  
+      if(!(opts.type==="pieChart" || opts.type==="sparklinePlus" || opts.type==="bulletChart")) {
+        var data = d3.nest()
+          .key(function(d){
+            //return opts.group === undefined ? 'main' : d[opts.group]
+            //instead of main would think a better default is opts.x
+            return opts.group === undefined ? opts.y : d[opts.group];
+          })
+          .entries(data);
+      }
+      
+      if (opts.disabled != undefined){
+        data.map(function(d, i){
+          d.disabled = opts.disabled[i]
+        })
+      }
+      
+      nv.addGraph(function() {
+        var chart = nv.models[opts.type]()
+          .width(opts.width)
+          .height(opts.height)
+          
+        if (opts.type != "bulletChart"){
+          chart
+            .x(function(d) { return d[opts.x] })
+            .y(function(d) { return d[opts.y] })
+        }
+          
+         
+        
+          
+        
+
+        
+        
+        
+      
+       d3.select("#" + opts.id)
+        .append('svg')
+        .datum(data)
+        .transition().duration(500)
+        .call(chart);
+
+       nv.utils.windowResize(chart.update);
+       return chart;
+      });
+    };
+</script>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-27" style="background:;">
+  <hgroup>
+    <h2>Data Visualization</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## Loading required package: reshape2
+</code></pre>
+
+<p><iframe src=' assets/fig/unnamed-chunk-19.html ' scrolling='no' frameBorder='0' seamless class='rChart morris ' id=iframe- chart38bb751e4c08 ></iframe> <style>iframe.rChart{ width: 100%; height: 400px;}</style></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue dark" id="slide-28" style="background:;">
+  <hgroup>
+    <h2>Web Application</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-29" style="background:;">
+  <hgroup>
+    <h2>Web Application</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Integrate all the previous features, we can merge them into a web app.</p>
+
+<p>Yes, we can build a web app in R!</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-30" style="background:;">
+  <hgroup>
+    <h2>Web Application</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Examples: </p>
+
+<ol>
+<li><a href="http://shiny.rstudio.com/gallery/kmeans-example.html">Kmeans on iris data</a></li>
+<li><a href="http://shiny.rstudio.com/gallery/nvd3-line-chart-output.html">Combining rCharts</a></li>
+<li><a href="http://shiny.rstudio.com/gallery/word-cloud.html">Wordcloud</a></li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-31" style="background:;">
+  <hgroup>
+    <h2>Web Application</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Advanced Examples:</p>
+
+<ol>
+<li><a href="https://hetong.shinyapps.io/imgsvd">imgSVD</a></li>
+<li><a href="http://shiny.rstudio.com/gallery/chat-room.html">Chat Room</a></li>
+<li><a href="http://shiny.rstudio.com/gallery/download-knitr-reports.html">Downloadable report genereation</a></li>
+<li><a href="http://shiny.rstudio.com/gallery/dynamic-clustering.html">Dynamic Clustering</a></li>
+<li><a href="http://shiny.rstudio.com/gallery/unicode-characters.html">Multi-language-character encoding</a></li>
+<li><a href="http://shiny.rstudio.com/gallery/personalized-ui.html">Personalization and authencation</a></li>
+</ol>
+
+<p>Enjoy more from the <a href="http://shiny.rstudio.com/gallery/">gallery</a>.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-32" style="background:;">
+  <hgroup>
+    <h2>Summarize</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>One of the important feature is the &#39;Webpage based output&#39;. </p>
+
+<p>Tools as </p>
+
+<ul>
+<li>ggplot2/rCharts</li>
+<li>knitr/slidify/rmarkdown</li>
+<li>shiny</li>
+</ul>
+
+<p>enable us directly share R code and trustful result around the world.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-33" style="background:;">
+  <hgroup>
+    <h2>Why does R need them</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Why these are features unique?</p>
+
+<div style='float:left;width:48%;' class='centered'>
+  <p>Academical application:</p>
+
+<ul>
+<li>Teaching</li>
+<li>Research</li>
+</ul>
+
+<p>Demonstrate the numbers and graphs from the computation is important. And the need for sharing and publishing a report/lecture/tutorial is increasing.</p>
+
+</div>
+<div style='float:right;width:48%;'>
+  <p>Industrial application:</p>
+
+<ul>
+<li>Internal communication</li>
+<li>Business report</li>
+<li>Automatic report generation</li>
+</ul>
+
+<p>R is mostly used with data related missions. Usually clients would like to get information from slides with beautiful pictures. The report system connects the demonstration and data manipulation.</p>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue dark" id="slide-34" style="background:;">
+  <hgroup>
+    <h2>FAQ</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Outline'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='The GNU-R project'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='R: Born for statistics'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='R: Born for statistics'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='R: Born for statistics'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='R: Born for statistics'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='R: Born for statistics'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='R: Born for statistics'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='R: Born for statisitics'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='Third party packages'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Third party packages'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='The community and environment'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Unique features in R'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Vectorization'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Vectorization'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Vectorization'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='Vectorization'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='Vectorization'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='Reproducible Report'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='Reproducible Report'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='Reproducible Report'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='Reproducible Report'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='Reproducible Report'>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title='Data Visualization'>
+         24
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=25 title='Data Visualization'>
+         25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title='Data Visualization'>
+         26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title='Data Visualization'>
+         27
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=28 title='Web Application'>
+         28
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=29 title='Web Application'>
+         29
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=30 title='Web Application'>
+         30
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=31 title='Web Application'>
+         31
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=32 title='Summarize'>
+         32
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=33 title='Why does R need them'>
+         33
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=34 title='FAQ'>
+         34
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>

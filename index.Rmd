@@ -1,0 +1,466 @@
+---
+title       : Introduction to R
+subtitle    : with unique features
+author      : Tong He
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : [nvd3,morris]            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+## Outline
+
+- R: Born for statistics.
+- Thousands of packages for data analysis
+- Reproducible report
+    - knitr
+    - slidify
+    - rmarkdown
+- Data Visualization
+    - ggplot2
+    - rCharts
+- Web application
+    - shiny
+
+--- .segue .dark
+
+## The GNU-R project
+
+---
+
+## R: Born for statistics
+
+History:
+
+- From the S language, which is inspired by Scheme.
+- Created by [Ross Ihaka](http://en.wikipedia.org/wiki/Ross_Ihaka) and [Robert Gentleman](http://en.wikipedia.org/wiki/Robert_Gentleman_%28statistician%29).
+
+---
+
+## R: Born for statistics
+
+R is strong for statistical missions. 
+
+- Strong matrix calculation ability
+- Native support for statistics
+- Abundant third-party packages
+
+---
+
+## R: Born for statistics
+
+```{r}
+groupA = rnorm(100,5,3)
+groupB = rnorm(25,10,3)
+groupA
+groupB
+```
+
+---
+
+## R: Born for statistics
+
+```{r}
+t.test(groupA,groupB,alternative = c("less"))
+```
+
+---
+
+## R: Born for statistics
+
+```{r}
+x = rnorm(100)
+y = 5*x+rnorm(100,0,1)
+lm.model = lm(y~x)
+lm.model
+```
+
+---
+
+## R: Born for statistics
+
+```{r}
+summary(lm.model)
+```
+
+---
+
+## R: Born for statisitics
+
+```{r,fig.align='center',fig.height=6,fig.width=8}
+plot(x,y,pch=20)
+abline(lm.model,col=2)
+```
+
+---
+
+## Third party packages
+
+- [CRAN](http://www.r-project.org/)(The Comprehensive R Archive Network) is managing over 5,000 R packages.
+    - Strict quality control
+    - [Task Views](http://cran.r-project.org/web/views/)
+    - My package [xgboost](http://cran.r-project.org/web/packages/xgboost/index.html)
+- [R-Forge](https://r-forge.r-project.org/) is an SVN repository for packages.
+- [Bioconductor](http://www.bioconductor.org/) focus on biostat and bioinfo packages.
+- [Github](http://github.com) more flexible.
+
+---
+
+## Third party packages
+
+To install a package, say `xgboost`, on CRAN, just type 
+
+```{r, eval=FALSE}
+install.packages('xgboost')
+```
+
+To install `xgboost` from github, we need 
+
+```{r,eval=FALSE}
+require(devtools)
+install_github('xgboost','tqchen',subdir='R-package')
+```
+
+--- &twocol
+
+## The community and environment
+
+*** =left
+
+The community
+
+- Mailing lists
+- Stackoverflow / Cross Validation
+- R conference
+
+*** =right
+
+The environment
+
+- IDE: RStudio
+  - Server version for collaboration
+  - Many fancy stuffs later
+- Commercial version
+  - Revolution
+
+--- .segue .dark
+
+## Unique features in R
+
+---
+
+## Vectorization
+
+```{r}
+a = 1:1000000
+b = 1:1000000
+system.time({a+b})
+system.time({
+  for (i in 1:length(a))
+    a[i]+b[i]
+})
+```
+
+Let C to do loop.
+
+---
+
+## Vectorization
+
+R is also strong in (sparse) matrix computation.
+
+```{r}
+library('Matrix')
+ 
+m1 = matrix(0, nrow = 1000, ncol = 1000)
+m2 = Matrix(0, nrow = 1000, ncol = 1000, sparse = TRUE)
+ 
+object.size(m1)
+object.size(m2)
+```
+
+---
+
+## Vectorization
+
+```{r}
+m1[500, 500] <- 1
+m2[500, 500] <- 1
+ 
+object.size(m1)
+object.size(m2)
+```
+
+---
+
+## Vectorization
+
+```{r, eval=FALSE}
+m2 %*% rnorm(1000)
+m2 + m2
+m2 - m2
+t(m2)
+```
+
+---
+
+## Vectorization
+
+R can also take advantage from the parallelization of *BLAS libraries. There are several choices:
+
+- OpenBLAS
+- ATLAS
+- HiPLAR
+
+[Here](http://www.stat.cmu.edu/~nmv/2013/07/09/for-faster-r-use-openblas-instead-better-than-atlas-trivial-to-switch-to-on-ubuntu/)'s a tutorial for apt-get style installation on Ubuntu.
+
+---
+
+## Reproducible Report
+
+Insert code and result in a slide is painful.
+
+- Copy & paste
+- Formatting
+- Update code and report seperately
+
+---
+
+## Reproducible Report
+
+```{r,fig.align='center',fig.width=8,fig.height=5}
+rnums = rnorm(10000)
+head(rnums)
+hist(rnums,breaks=50)
+```
+
+---
+
+## Reproducible Report
+
+This is supported by the package [`knitr`](http://yihui.name/knitr/):
+
+- Markdown-based grammar with HTML codes as extension
+- Webpage based output
+
+We'll see the 'Webpage based output' is important.
+
+--- &twocol
+
+## Reproducible Report
+
+This slide is produced by the package [`slidify`](https://github.com/ramnathv/slidify).
+
+- Based on `knitr`
+- Abundant templates
+- Easy to share
+
+---
+
+## Reproducible Report
+
+Now I write all the assignments with `rmarkdown`:
+
+- Based on `knitr`
+- Allowing formatting and templates
+- Using `pandoc` as the backend
+    - PDF
+    - HTML
+    - Word(yes, even word)
+
+--- &twocol
+
+## Data Visualization
+
+Data visualization is sometimes important. Compare these two graphs:
+
+*** =left
+
+```{r,echo=FALSE,fig.height=5, fig.width=6, message=FALSE}
+set.seed(6298)
+require(ggplot2)
+diamonds_small <- diamonds[sample(nrow(diamonds), 1000), ]
+hist(diamonds_small$price,breaks=50)
+```
+
+*** =right
+
+```{r,echo=FALSE,fig.height=5, fig.width=6, message=FALSE}
+hist_cut <- ggplot(diamonds_small, aes(x=price, fill=cut))
+hist_cut + geom_bar()
+```
+
+--- &twocol
+
+## Data Visualization
+
+Or we can have other variations:
+
+*** =left
+
+```{r,echo=FALSE,fig.height=5, fig.width=6, message=FALSE}
+hist_cut + geom_bar(position="fill")
+```
+
+*** =right
+
+```{r,echo=FALSE,fig.height=5, fig.width=6, message=FALSE}
+hist_cut + geom_density(alpha = 0.2)
+```
+
+---
+
+## Data Visualization
+
+Sometimes static pictures are not enough:
+
+```{r,echo=FALSE, message=FALSE, comment=NA}
+require(rCharts)
+require(knitr)
+options(RCHART_WIDTH = 800, RCHART_HEIGHT = 500, rcharts.cdn=FALSE)
+```
+
+```{r,echo=FALSE,results = 'asis'}
+hair_eye_male <- subset(as.data.frame(HairEyeColor), Sex == "Male")
+n1 <- nPlot(Freq ~ Hair, group = "Eye", data = hair_eye_male, 
+  type = 'multiBarChart')
+n1$show('inline',include_assets = TRUE,cdn=FALSE)
+```
+
+---
+
+## Data Visualization
+
+```{r,echo=FALSE,results='asis'}
+data(economics, package = "ggplot2")
+econ <- transform(economics, date = as.character(date))
+m1 <- mPlot(x = "date", y = c("psavert", "uempmed"), type = "Line", data = econ)
+m1$set(pointSize = 0, lineWidth = 1)
+m1
+```
+
+--- .segue .dark
+
+## Web Application
+
+---
+
+## Web Application
+
+Integrate all the previous features, we can merge them into a web app.
+
+Yes, we can build a web app in R!
+
+---
+
+## Web Application
+
+Examples: 
+
+1. [Kmeans on iris data](http://shiny.rstudio.com/gallery/kmeans-example.html)
+2. [Combining rCharts](http://shiny.rstudio.com/gallery/nvd3-line-chart-output.html)
+3. [Wordcloud](http://shiny.rstudio.com/gallery/word-cloud.html)
+
+---
+
+## Web Application
+
+Advanced Examples:
+
+1. [imgSVD](https://hetong.shinyapps.io/imgsvd)
+2. [Chat Room](http://shiny.rstudio.com/gallery/chat-room.html)
+3. [Downloadable report genereation](http://shiny.rstudio.com/gallery/download-knitr-reports.html)
+4. [Dynamic Clustering](http://shiny.rstudio.com/gallery/dynamic-clustering.html)
+5. [Multi-language-character encoding](http://shiny.rstudio.com/gallery/unicode-characters.html)
+6. [Personalization and authencation](http://shiny.rstudio.com/gallery/personalized-ui.html)
+
+Enjoy more from the [gallery](http://shiny.rstudio.com/gallery/).
+
+---
+
+## Summarize
+
+One of the important feature is the 'Webpage based output'. 
+
+Tools as 
+
+- ggplot2/rCharts
+- knitr/slidify/rmarkdown
+- shiny
+
+enable us directly share R code and trustful result around the world.
+
+--- &twocol
+
+## Why does R need them
+
+Why these are features unique?
+
+*** =left
+
+Academical application:
+
+- Teaching
+- Research
+
+Demonstrate the numbers and graphs from the computation is important. And the need for sharing and publishing a report/lecture/tutorial is increasing.
+
+*** =right
+
+Industrial application:
+
+- Internal communication
+- Business report
+- Automatic report generation
+
+R is mostly used with data related missions. Usually clients would like to get information from slides with beautiful pictures. The report system connects the demonstration and data manipulation.
+
+--- .segue .dark
+
+## FAQ
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
