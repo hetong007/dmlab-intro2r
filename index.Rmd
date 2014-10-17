@@ -1,6 +1,6 @@
 ---
 title       : Introduction to R
-subtitle    : with unique features
+subtitle    : with awesome features
 author      : Tong He
 job         : 
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
@@ -149,7 +149,7 @@ The environment
 
 --- .segue .dark
 
-## Unique features in R
+## Awesome features in R
 
 ---
 
@@ -386,8 +386,6 @@ enable us directly share R code and trustful result around the world.
 --- &twocol
 
 ## Why does R need them
-
-Why these are features unique?
 
 *** =left
 
